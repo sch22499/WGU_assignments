@@ -3,10 +3,8 @@
 #include<iostream>
 using namespace std;
 
-
-
+Student::Student(){};
 Student::Student(string studentId, string firstName, string lastName,  string emailAddress, int age, int daysToCompleteCourse[], Degree degreeType)
-    : daysToCompleteCourse(this -> daysToCompleteCourse)
     {
         this->studentId = studentId;
         this->firstName = firstName;
@@ -14,16 +12,21 @@ Student::Student(string studentId, string firstName, string lastName,  string em
         this->emailAddress = emailAddress;
         this->age = age;
         this->degreeType = degreeType;
+
+        for(int i = 0; i<3; i++){
+            this->daysToCompleteCourse[i] = daysToCompleteCourse[i];
+        }
     }
         
-    void Student::print() {
-        cout << studentId << endl;
-        cout << firstName << endl;
-        cout << lastName << endl;
-        cout << emailAddress << endl;
-        cout << age  << endl;
-        cout << daysToCompleteCourse << endl;
-        cout << degreeType << endl;
+    void Student::print()  {
+        
+        cout << getStudentId() << '\t';
+        cout << getFirstName() << '\t';
+        cout << getLastName() << '\t';
+        cout << getEmailAddress() << '\t';
+        cout << getAge()  << '\t';
+        cout << getDaysToCompleteCourse() << '\t';
+        cout << getDegreeProgram() << '\t';
     }
 
     string Student::getStudentId(){
@@ -37,6 +40,15 @@ Student::Student(string studentId, string firstName, string lastName,  string em
     int * Student::getDaysToCompleteCourse(){
         return daysToCompleteCourse;
     }
+
+    void Student::setDaysToCompleteCourse(int daysToCompleteCourse[]){
+        for(int i = 0; i<3; i++){
+            this->daysToCompleteCourse[i] = daysToCompleteCourse[i];
+        }
+    }
+
+    Degree Student::getDegreeProgram(){}
+    
 
     string Student::getFirstName(){
          return firstName;
@@ -69,4 +81,6 @@ Student::Student(string studentId, string firstName, string lastName,  string em
     void Student::setAge(int age){
         this -> age = age;
     }
+
+    Student::~Student() = default;
 

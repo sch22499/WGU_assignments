@@ -18,7 +18,7 @@ class Roster{
 
     Roster(){};
 
-    Student *classRosterArray[20] = {};
+    Student* classRosterArray[20] = {};
     
 
     const string studentData[5] =
@@ -38,28 +38,28 @@ class Roster{
             if(classRosterArray[i] == nullptr){
                 switch(degreeType){
                     case SECURITY:{
-                        SecurityStudent securityStudent = SecurityStudent(degreeType, studentId, firstName, lastName, emailAddress, age, daysToCompleteCourse);
-                        classRosterArray[i] = &securityStudent;
+                        SecurityStudent *securityStudent = new SecurityStudent(degreeType, studentId, firstName, lastName, emailAddress, age, daysToCompleteCourse);
+                        classRosterArray[i] = securityStudent;
                     }case NETWORK:{
-                        NetworkStudent networkStudent =  NetworkStudent(degreeType, studentId, firstName, lastName, emailAddress, age, daysToCompleteCourse);
-                        classRosterArray[i] = &networkStudent;
+                        NetworkStudent *networkStudent =  new NetworkStudent(degreeType, studentId, firstName, lastName, emailAddress, age, daysToCompleteCourse);
+                        classRosterArray[i] = networkStudent;
                     }case SOFTWARE:{
-                        SoftwareStudent softwareStudent =  SoftwareStudent(degreeType, studentId, firstName, lastName, emailAddress, age, daysToCompleteCourse);
-                        classRosterArray[i] = &softwareStudent;}
+                        SoftwareStudent *softwareStudent = new SoftwareStudent(degreeType, studentId, firstName, lastName, emailAddress, age, daysToCompleteCourse);
+                        classRosterArray[i] = softwareStudent;}
                     }        
             }
         }       
                
     }
 
-    Degree convertDegree(const int& degree){
+    Degree convertDegree(int degree){
             if(degree == 1) return SECURITY;
-            else if (degree == 3) return NETWORK;
+            if (degree == 3) return NETWORK;
             else  return SOFTWARE;
 
         }    
 
-    void printDaysInCourse(string studentId){
+    void printAverageDaysInCourse(string studentId){
         for(int i = 0; i < sizeof(classRosterArray); i++){
             while(classRosterArray[i]->getStudentId() == studentId){
                 int num1 = classRosterArray[i]->getDaysToCompleteCourse()[0];
@@ -75,14 +75,13 @@ class Roster{
 
     }
 
-    void printByDegree(int degreeProgram){
+    void printByDegreeProgram(int degreeProgram){
 
         Degree degree = convertDegree(degree);
-        classRosterArray[1];
 
         for (int i = 0; i < sizeof(classRosterArray); i++){
             while(classRosterArray[i]->getDegreeProgram() == degree){
-                cout << "add printing things" << endl;
+                classRosterArray[i]->print();
             }   
                 cout << "No student with that Degree found" << endl;    
             }
@@ -107,11 +106,11 @@ class Roster{
         }
     }
 
-    // void printAll(){
-
-    // }
-
-
+    void printAll(){
+       for(int i = 0; i < sizeof(classRosterArray); i++){
+           classRosterArray[i]->print();
+        }
+    }
 
     void parseData(){
 
@@ -139,6 +138,20 @@ class Roster{
         }
     }
 
+    void remove(string studentId){
+        for(int i = 0; i < sizeof(classRosterArray); i++){
+            if(classRosterArray[i]->getStudentId() == studentId){
+                delete classRosterArray[i];
+            }else{
+                cout << "No Student with this id found";
+            }
+
+        }
+    }
+
+    ~Roster(){
+        *classRosterArray = 0;
+    }
 
 };
 
@@ -146,14 +159,26 @@ class Roster{
 
 int main(){
 
-    Roster roster = Roster();
+      Roster* classRoster = nullptr;
+      classRoster = new Roster();
+      classRoster->parseData();
+    
+     cout << "Scripting and Programming \n C++ \n StudentId: #001152220 \n Sarah Hall";
 
-    //roster.parseData();
-    cout << "sarah trest" <<endl;
+     classRoster->printAll();
+    // classRoster.printInvalidEmails();
+
+
+
+    // for(int i = 0; i < sizeof(classRoster.classRosterArray); i++){
+    //     classRoster.printAverageDaysInCourse(classRoster.classRosterArray[i]->getStudentId());
+    //     classRoster.printByDegreeProgram(SOFTWARE);
+    //     classRoster.remove("A3");
+    //     classRoster.remove("A3");
+    // }
 
     return 0;   
 }
-
 
 
 

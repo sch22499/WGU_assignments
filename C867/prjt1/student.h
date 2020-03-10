@@ -17,20 +17,19 @@ class Student {
         string emailAddress;
 
         int age;
-
-        int (&daysToCompleteCourse)[];
         Degree degreeType; 
+
+        int daysToCompleteCourse[3];
 
 
     public: 
-        
         Student();
         Student(string studentId, string firstName, string lastName,  string emailAddress, int age, int daysToCompleteCourse[], Degree degreeType);
         
         
         virtual void print();
 
-        virtual Degree getDegreeProgram();
+        virtual Degree getDegreeProgram() = 0;
 
         string  getStudentId();
 
@@ -38,6 +37,8 @@ class Student {
         int * getDaysToCompleteCourse();
 
         void setStudentId(string studentId);
+
+        void setDaysToCompleteCourse(int daysToCompleteCourse[]);
         
 
         string getFirstName();
