@@ -16,20 +16,19 @@ class Student {
         string lastName;
         string emailAddress;
 
-        int age;
-        Degree degreeType; 
+        int age; 
 
         int daysToCompleteCourse[3];
 
 
     public: 
-        Student();
-        Student(string studentId, string firstName, string lastName,  string emailAddress, int age, int daysToCompleteCourse[], Degree degreeType);
+        Student();//constructor
+        Student(string studentId, string firstName, string lastName,  string emailAddress, int age, int daysToCompleteCourse[]);
         
         
         virtual void print();
 
-        virtual Degree getDegreeProgram() = 0;
+        Degree virtual getDegreeProgram();
 
         string  getStudentId();
 

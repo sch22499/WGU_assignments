@@ -3,31 +3,21 @@
 #include<iostream>
 using namespace std;
 
-Student::Student(){};
-Student::Student(string studentId, string firstName, string lastName,  string emailAddress, int age, int daysToCompleteCourse[], Degree degreeType)
+Student::Student(){}
+Student::Student(string studentId, string firstName, string lastName,  string emailAddress, int age, int daysToCompleteCourse[])
     {
         this->studentId = studentId;
         this->firstName = firstName;
         this->lastName = lastName;
         this->emailAddress = emailAddress;
         this->age = age;
-        this->degreeType = degreeType;
 
         for(int i = 0; i<3; i++){
             this->daysToCompleteCourse[i] = daysToCompleteCourse[i];
         }
     }
         
-    void Student::print()  {
-        
-        cout << getStudentId() << '\t';
-        cout << getFirstName() << '\t';
-        cout << getLastName() << '\t';
-        cout << getEmailAddress() << '\t';
-        cout << getAge()  << '\t';
-        cout << getDaysToCompleteCourse() << '\t';
-        cout << getDegreeProgram() << '\t';
-    }
+
 
     string Student::getStudentId(){
         return studentId;
@@ -46,8 +36,6 @@ Student::Student(string studentId, string firstName, string lastName,  string em
             this->daysToCompleteCourse[i] = daysToCompleteCourse[i];
         }
     }
-
-    Degree Student::getDegreeProgram(){}
     
 
     string Student::getFirstName(){
@@ -82,5 +70,7 @@ Student::Student(string studentId, string firstName, string lastName,  string em
         this -> age = age;
     }
 
-    Student::~Student() = default;
+    void Student::print(){}
+
+    Student::~Student() {}
 
