@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="372.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.PartsMenuController">
+   <children>
+      <VBox layoutX="13.0" layoutY="13.0" prefHeight="374.0" prefWidth="347.0" style="-fx-border-color: gray; -fx-background-color: E7E7E7;">
+         <children>
+            <HBox prefHeight="72.0" prefWidth="347.0">
+               <children>
+                  <Label fx:id="titleLabel" prefHeight="52.0" prefWidth="129.0" text="Label" textFill="#0f0ca8">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <RadioButton fx:id="inHouseBtn" mnemonicParsing="false" onAction="#onInHouseBtn" prefHeight="49.0" prefWidth="103.0" text="In-House">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="partTypeToggle" />
+                     </toggleGroup></RadioButton>
+                  <RadioButton fx:id="outsourcedBtn" mnemonicParsing="false" onAction="#onOutsourceBtn" prefHeight="50.0" prefWidth="122.0" text="Outsourced" toggleGroup="$partTypeToggle" />
+               </children>
+            </HBox>
+            <GridPane prefHeight="252.0" prefWidth="321.0">
+              <columnConstraints>
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="168.0" minWidth="10.0" prefWidth="99.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.0" minWidth="10.0" prefWidth="130.33333333333331" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="168.0" minWidth="6.0" prefWidth="29.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="216.0" minWidth="10.0" prefWidth="98.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints maxHeight="78.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="78.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="78.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="82.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="143.0" minHeight="10.0" prefHeight="42.0" valignment="CENTER" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="55.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label prefHeight="17.0" prefWidth="40.0" text="ID" textAlignment="CENTER">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label text="Name" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label text="Inventory" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin></Label>
+                  <Label text="Price/Cost" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin></Label>
+                  <Label text="Max" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin></Label>
+                  <Label fx:id="dynamicTxtLabel" text="Machine ID" GridPane.rowIndex="5">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin></Label>
+                  <TextField fx:id="idTxtField" disable="true" text="TEXT" GridPane.columnIndex="1" />
+                  <TextField fx:id="nameTxtField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="invTxtField" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets right="50.0" />
+                     </GridPane.margin></TextField>
+                  <TextField fx:id="priceTxtField" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets right="50.0" />
+                     </GridPane.margin></TextField>
+                  <TextField fx:id="maxTxtField" prefHeight="25.0" prefWidth="67.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets right="50.0" />
+                     </GridPane.margin></TextField>
+                  <TextField fx:id="minTxtField" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin></TextField>
+                  <Label text="Min" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField fx:id="dynamicTxtField" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin></TextField>
+               </children>
+            </GridPane>
+            <HBox alignment="TOP_RIGHT" prefHeight="55.0" prefWidth="347.0">
+               <children>
+                  <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#onSave" text="Save">
+                     <HBox.margin>
+                        <Insets right="10.0" top="10.0" />
+                     </HBox.margin></Button>
+                  <Button mnemonicParsing="false" onAction="#onCancel" text="Cancel">
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin></Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
