@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Model.Schedule">
+   <children>
+      <HBox prefHeight="400.0" prefWidth="601.0">
+         <children>
+            <VBox prefHeight="400.0" prefWidth="406.0">
+               <children>
+                  <Label text="Username">
+                     <VBox.margin>
+                        <Insets left="50.0" top="50.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="Password">
+                     <VBox.margin>
+                        <Insets left="50.0" top="50.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox prefHeight="216.0" prefWidth="601.0">
+               <children>
+                  <TextField alignment="CENTER" maxWidth="200.0" prefHeight="25.0" prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets bottom="50.0" top="50.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField maxWidth="200.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </TextField>
+                  <Button alignment="BOTTOM_RIGHT" mnemonicParsing="false" text="Log in">
+                     <VBox.margin>
+                        <Insets top="50.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
