@@ -4,10 +4,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Model.Schedule">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.Login">
    <children>
-      <HBox prefHeight="400.0" prefWidth="601.0">
+      <HBox layoutX="171.0" prefHeight="268.0" prefWidth="430.0">
          <children>
             <VBox prefHeight="400.0" prefWidth="406.0">
                <children>

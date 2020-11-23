@@ -5,19 +5,26 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sample.DAO.DBConnection;
+
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("View/login.fxml"));
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root));
+        primaryStage.sizeToScene();
+
         primaryStage.show();
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        DBConnection.makeConnection();
+        System.out.println("sarah hoooo");
         launch(args);
+        DBConnection.closeConnection();
     }
 }
