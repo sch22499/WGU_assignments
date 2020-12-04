@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="300.0" prefHeight="277.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.Login">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="300.0" prefHeight="277.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ViewController.Login">
    <children>
       <HBox layoutX="30.0" prefHeight="268.0" prefWidth="571.0">
          <children>
@@ -24,17 +24,17 @@
             </VBox>
             <VBox prefHeight="268.0" prefWidth="326.0">
                <children>
-                  <TextField alignment="CENTER" maxWidth="200.0" prefHeight="25.0" prefWidth="200.0">
+                  <TextField fx:id="usernameInput" alignment="CENTER" maxWidth="200.0" prefHeight="25.0" prefWidth="200.0">
                      <VBox.margin>
                         <Insets bottom="50.0" top="50.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField maxWidth="200.0">
+                  <TextField fx:id="passwordInput" maxWidth="200.0">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                   </TextField>
-                  <Button alignment="BOTTOM_RIGHT" mnemonicParsing="false" text="Log in">
+                  <Button fx:id="loginButton" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#onLoginButtonPressed" text="Log in">
                      <VBox.margin>
                         <Insets top="50.0" />
                      </VBox.margin>

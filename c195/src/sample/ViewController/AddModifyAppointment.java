@@ -1,4 +1,4 @@
-package sample.Controller;
+package sample.ViewController;
 
 public class AddModifyAppointment {
 }

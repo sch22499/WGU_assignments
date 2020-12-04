@@ -12,8 +12,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("View/login.fxml"));
-        primaryStage.setTitle("Hello World");
+        DBConnection.makeConnection();
+
+        Parent root = FXMLLoader.load(getClass().getResource("ViewController/login.fxml"));
+        primaryStage.setTitle("Login");
         primaryStage.setScene(new Scene(root));
         primaryStage.sizeToScene();
 
@@ -22,9 +24,6 @@ public class Main extends Application {
 
 
     public static void main(String[] args) throws Exception {
-        DBConnection.makeConnection();
-        System.out.println("sarah hoooo");
         launch(args);
-        DBConnection.closeConnection();
     }
 }

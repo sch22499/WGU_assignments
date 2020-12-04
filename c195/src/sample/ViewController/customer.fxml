@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ViewController.CustomerView">
+   <children>
+      <BorderPane prefHeight="400.0" prefWidth="600.0">
+         <center>
+            <TableView fx:id="table" prefHeight="400.0" prefWidth="463.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="customerIdCol" prefWidth="89.0" text="Customer ID" />
+                <TableColumn fx:id="customerNameCol" prefWidth="109.0" text="Customer Name" />
+                  <TableColumn fx:id="addressColumn" prefWidth="67.0" text="Address" />
+                  <TableColumn prefWidth="89.0" text="City" />
+                  <TableColumn prefWidth="67.0" text="Country" />
+                  <TableColumn prefWidth="89.0" text="ZipCode" />
+                  <TableColumn prefWidth="89.0" text="Phone #" />
+              </columns>
+            </TableView>
+         </center>
+         <top>
+            <Label text="Customer Data" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+         </top>
+         <bottom>
+            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" text="Add Customer" />
+                  <Button disable="true" mnemonicParsing="false" text="Modify Customer" />
+                  <Button disable="true" mnemonicParsing="false" text="Delete Customer" />
+                  <Button mnemonicParsing="false" text="Home" />
+               </children>
+            </HBox>
+         </bottom></BorderPane>
+   </children>
+</AnchorPane>
