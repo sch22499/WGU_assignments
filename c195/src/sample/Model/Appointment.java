@@ -17,6 +17,7 @@ public class Appointment {
     private Calendar endTime;
     private Calendar createDate;
     private User createdBy;
+    public int month;
     private Calendar lastUpdate;
     private User lastUpdateBy;
 
@@ -40,6 +41,7 @@ public class Appointment {
         this.createdBy= createdBy;
         this.lastUpdate = lastUpdate;
         this.lastUpdateBy = lastUpdateBy;
+        this.month = startTime.get(Calendar.MONTH);
     }
 
     public int getAppointmentID() {
@@ -60,6 +62,10 @@ public class Appointment {
 
     public int getUserID() {
         return userID;
+    }
+
+    public int getMonth(){
+        return month;
     }
 
     public void setUserID(int userID) {
@@ -125,6 +131,8 @@ public class Appointment {
     public Calendar getEndTime() {
         return endTime;
     }
+
+
 
     public void setEndTime(Calendar endTime) {
         this.endTime = endTime;

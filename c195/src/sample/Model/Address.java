@@ -15,9 +15,6 @@ public class Address {
     private Calendar lastUpdateTime;
     private User lastUpdatedBy;
 
-    //TODO is this necessary? Ii'm thinking I can get away with just doinmg the thing HOOO IT IS BABY
-
-
     public int getAddressID() {
         return addressID;
     }

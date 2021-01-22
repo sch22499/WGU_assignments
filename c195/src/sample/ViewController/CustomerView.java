@@ -2,15 +2,21 @@ package sample.ViewController;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import sample.DAO.CustomerDAOImpl;
+import sample.Model.Appointment;
 import sample.Model.Customer;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 public class CustomerView implements Initializable {
@@ -40,7 +46,6 @@ public class CustomerView implements Initializable {
     @FXML
     private TableColumn<Customer, String> lastUpdateByCol;
             //TODO convert address from address id;
-
     @FXML
     private Button addButton;
 
@@ -54,6 +59,14 @@ public class CustomerView implements Initializable {
     private Button homeButton;
 
     private static Customer selectedCustomer;
+
+    public static Customer getSelectedCustomer(){
+        return selectedCustomer;
+    }
+
+    public void setSelectedCustomer(Customer selectedCustomer){
+        this.selectedCustomer = selectedCustomer;
+    }
 
 
     public CustomerView(){}
@@ -75,10 +88,27 @@ public class CustomerView implements Initializable {
 
     }
 
+    @FXML
+    private void onModifyCustomer(Event event)throws IOException{
+        selectedCustomer = table.getSelectionModel().getSelectedItem();
+
+        if(selectedCustomer != null){
+            setSelectedCustomer(selectedCustomer);
+            showModifyMenu(event);
+        }
+
+    }
+
+    private void showModifyMenu(Event event){
+
+    }
+
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        selectedCustomer = null;
+        setSelectedCustomer(null);
         try {
             populateTable();
         } catch (Exception e) {

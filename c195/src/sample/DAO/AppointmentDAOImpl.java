@@ -115,4 +115,7 @@ public class AppointmentDAOImpl {
         return typeResult;
     }
 
+
+
+
 }
