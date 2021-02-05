@@ -39,39 +39,69 @@ public class Schedule implements Initializable {
 
     private  static Appointment selectedAppointment;
 
-    @FXML
-    private ChoiceBox<String> monthDropdown;
-
-
-
-    @FXML
-    private SplitMenuButton weekDropdown;
-
-    @FXML
-    private TableView<Appointment> table;
-
-    @FXML
-    private TableColumn<Appointment, String> dateColumn;
-
-    @FXML
-    private TableColumn<Appointment, String> timeColumn;
-
-    private static int selectedMonth;
-
-    @FXML
-    private TableColumn<Appointment, String> typeColumn;
-
-    @FXML
-    private  TableColumn<Appointment, String> customerColumn;
-
-    @FXML
-    private TableColumn<Appointment, String> durationColumn;
+    //1000 milliseconds * 60 seconds * 60 minutes * 24 hours.
+    private int dayInMilliseconds = 1000*60*60*24;
 
     @FXML
     private Button homeButton;
 
 
-    public static Appointment getSelectedAppointment(){
+
+    //TODO split this class up?
+    //Table thingies for month view
+    @FXML
+    private TableView<Appointment> tableMonthView;
+
+    @FXML
+    private TableColumn<Appointment, String> dateColumnMonthView;
+
+    @FXML
+    private ChoiceBox<String> dropdownMonthView;
+
+    @FXML
+    private TableColumn<Appointment, String> timeColumnMonthView;
+
+    @FXML
+    private TableColumn<Appointment, String> typeColumnMonthView;
+
+    @FXML
+    private  TableColumn<Appointment, String> customerColumnMonthView;
+
+    @FXML
+    private TableColumn<Appointment, String> durationColumnMonthView;
+
+    private static int selectedMonth;
+
+
+    //Thiniges for weekView
+    @FXML
+    private SplitMenuButton weekDropdown;
+
+    @FXML
+    private TableView<Appointment> tableWeekView;
+
+    @FXML
+    private TableColumn<Appointment, String> dateColumnWeekView;
+
+    @FXML
+    private ChoiceBox<String> dropdownWeekView;
+
+    @FXML
+    private TableColumn<Appointment, String> timeColumnWeekView;
+
+    @FXML
+    private TableColumn<Appointment, String> typeColumnWeekView;
+
+    @FXML
+    private  TableColumn<Appointment, String> customerColumnWeekView;
+
+    @FXML
+    private TableColumn<Appointment, String> durationColumnWeekView;
+
+    private static int selectedWeek;
+
+
+    public static Appointment getSelectedAppointment() {
         return selectedAppointment;
     }
 
@@ -80,8 +110,9 @@ public class Schedule implements Initializable {
 
     }
 
-
-
+    public ChoiceBox<String> getMonthDropdown() {
+        return dropdownMonthView;
+    }
 
     @FXML
     private void onHomeButtonSelect(Event event)throws IOException {
@@ -110,12 +141,12 @@ public class Schedule implements Initializable {
 
 //todo LAMBDA TO POPULATE TABLES
 
-        dateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStartTime().toString()));
-        timeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStartTime().toString()));
-        typeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getType()));
-        customerColumn.setCellValueFactory(cellData -> new SimpleStringProperty(getCustomerName(cellData.getValue().getCustomerID())));
-        durationColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEndTime().toString()));
-        table.setItems(appointments);
+        dateColumnMonthView.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStartTime().toString()));
+        timeColumnMonthView.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStartTime().toString()));
+        typeColumnMonthView.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getType()));
+        customerColumnMonthView.setCellValueFactory(cellData -> new SimpleStringProperty(getCustomerName(cellData.getValue().getCustomerID())));
+        durationColumnMonthView.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEndTime().toString()));
+        tableMonthView.setItems(appointments);
 
 
     }
@@ -147,6 +178,34 @@ public class Schedule implements Initializable {
         }
         return day;
     }
+
+    private int getMondayForLastWeek(int timeInMilliseconds){
+
+        //TODO clean up
+
+        int currentDayOfWeek;
+        int sevenDaysAgo = timeInMilliseconds - (1000 * 60 * 60 * 24 * 7);
+        int lastMonday = sevenDaysAgo - ((1000*60*60*24) * timeInMilliseconds);
+
+        return 1;
+    }
+
+    private int getMondayForNextWeek(int timeInMilliseconds){
+
+        int currentDayOfWeek = 0 ;
+        int sevenDaysFromNow = timeInMilliseconds + (1000 * 60 * 60 * 24 * 7);
+        int nextMonday = sevenDaysFromNow - ((1000*60*60*24) * currentDayOfWeek);
+
+
+        return 0;
+    }
+    private int getMondayForThisWeek(int timeInMilliseconds){
+
+        int currentDayOfWeek; //from time in milliseconds.
+        int monday = timeInMilliseconds - (dayInMilliseconds * currentDayOfWeek);
+        return 0;
+    }
+
 
 
     public String getDate(Calendar date, boolean isDate){
@@ -264,12 +323,15 @@ public class Schedule implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        monthDropdown.getItems().addAll("January", "February","March","April","May","June","July","August","September","October","November","December");
+        dropdownMonthView.getItems().addAll(
+                "January", "February","March",
+                "April", "May","June","July","August",
+                "September","October","November","December");
 
         //TODO lambda
-        monthDropdown.setOnAction(e -> {
+        dropdownMonthView.setOnAction(e -> {
             try {
-                getSelectedMonth(monthDropdown);
+                getSelectedMonth(dropdownMonthView);
                 populateTable(getAppointmentsByMonth());
             } catch (Exception exception) {
                 exception.printStackTrace();
