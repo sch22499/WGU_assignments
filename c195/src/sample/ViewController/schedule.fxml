@@ -15,14 +15,14 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <ChoiceBox fx:id="monthDropdown" prefWidth="150.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="460.0" AnchorPane.topAnchor="10.0" />
-                              <TableView fx:id="table" layoutX="151.0" prefHeight="376.0" prefWidth="440.0">
+                              <ChoiceBox fx:id="dropdownMonthView" prefWidth="150.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="460.0" AnchorPane.topAnchor="10.0" />
+                              <TableView fx:id="tableMonthView" layoutX="151.0" prefHeight="376.0" prefWidth="440.0">
                                 <columns>
-                                    <TableColumn fx:id="dateColumn" prefWidth="75.0" text="Date" />
-                                  <TableColumn fx:id="timeColumn" prefWidth="75.0" text="Time" />
-                                  <TableColumn fx:id="typeColumn" prefWidth="123.0" text="Appointment Type" />
-                                    <TableColumn fx:id="customerColumn" prefWidth="92.0" text="Customer" />
-                                    <TableColumn fx:id="durationColumn" prefWidth="75.0" text="Duration" />
+                                    <TableColumn fx:id="dateColumnMonthView" prefWidth="75.0" text="Date" />
+                                  <TableColumn fx:id="timeColumnMonthView" prefWidth="75.0" text="Time" />
+                                  <TableColumn fx:id="typeColumnMonthView" prefWidth="123.0" text="Appointment Type" />
+                                    <TableColumn fx:id="customerColumnMonthView" prefWidth="92.0" text="Customer" />
+                                    <TableColumn fx:id="durationColumnMonthView" prefWidth="75.0" text="Duration" />
                                 </columns>
                               </TableView>
                            </children></AnchorPane>
@@ -32,16 +32,16 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView layoutX="151.0" prefHeight="376.0" prefWidth="441.0">
+                              <TableView fx:id="tableWeekView" layoutX="151.0" prefHeight="376.0" prefWidth="441.0">
                                  <columns>
-                                    <TableColumn prefWidth="75.0" text="Date" />
-                                    <TableColumn prefWidth="75.0" text="Time" />
-                                    <TableColumn prefWidth="123.0" text="Appointment Type" />
-                                    <TableColumn prefWidth="92.0" text="Customer" />
-                                    <TableColumn prefWidth="75.0" text="Duration" />
+                                    <TableColumn fx:id="dateColumnWeekView" prefWidth="75.0" text="Date" />
+                                    <TableColumn fx:id="timeColumnWeekView" prefWidth="75.0" text="Time" />
+                                    <TableColumn fx:id="typeColumnWeekView" prefWidth="123.0" text="Appointment Type" />
+                                    <TableColumn fx:id="customerColumnWeekView" prefWidth="92.0" text="Customer" />
+                                    <TableColumn fx:id="durationColumnWeekView" prefWidth="75.0" text="Duration" />
                                  </columns>
                               </TableView>
-                              <SplitMenuButton layoutX="14.0" layoutY="26.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" text="Default">
+                              <SplitMenuButton fx:id="weekDropdown" layoutX="14.0" layoutY="26.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" text="Default">
                                 <items>
                                   <MenuItem mnemonicParsing="false" text="This week" />
                                   <MenuItem mnemonicParsing="false" text="Previous Week" />

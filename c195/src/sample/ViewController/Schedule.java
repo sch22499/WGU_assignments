@@ -137,15 +137,16 @@ public class Schedule implements Initializable {
 
 
 
+
     private void populateTable(ObservableList<Appointment> appointments) throws Exception {
 
 //todo LAMBDA TO POPULATE TABLES
 
-        dateColumnMonthView.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStartTime().toString()));
-        timeColumnMonthView.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStartTime().toString()));
+        dateColumnMonthView.setCellValueFactory(cellData -> new SimpleStringProperty(getDate(cellData.getValue().getStartTime(), true)));
+        timeColumnMonthView.setCellValueFactory(cellData -> new SimpleStringProperty(getTime(cellData.getValue().getStartTime())));
         typeColumnMonthView.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getType()));
         customerColumnMonthView.setCellValueFactory(cellData -> new SimpleStringProperty(getCustomerName(cellData.getValue().getCustomerID())));
-        durationColumnMonthView.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEndTime().toString()));
+        durationColumnMonthView.setCellValueFactory(cellData -> new SimpleStringProperty(getDuration(cellData.getValue().getStartTime(), cellData.getValue().getEndTime())));
         tableMonthView.setItems(appointments);
 
 
@@ -184,8 +185,8 @@ public class Schedule implements Initializable {
         //TODO clean up
 
         int currentDayOfWeek;
-        int sevenDaysAgo = timeInMilliseconds - (1000 * 60 * 60 * 24 * 7);
-        int lastMonday = sevenDaysAgo - ((1000*60*60*24) * timeInMilliseconds);
+        int sevenDaysAgo = timeInMilliseconds - (dayInMilliseconds * 7);
+        int lastMonday = sevenDaysAgo - ((dayInMilliseconds) * timeInMilliseconds);
 
         return 1;
     }
@@ -201,10 +202,21 @@ public class Schedule implements Initializable {
     }
     private int getMondayForThisWeek(int timeInMilliseconds){
 
-        int currentDayOfWeek; //from time in milliseconds.
+        int currentDayOfWeek = 0; //from time in milliseconds.
         int monday = timeInMilliseconds - (dayInMilliseconds * currentDayOfWeek);
         return 0;
     }
+
+    private String getDuration(Calendar startTime, Calendar endTime){
+
+
+        long duration = (endTime.getTimeInMillis() - startTime.getTimeInMillis())/60;
+
+        return String.valueOf(duration);
+
+    }
+
+
 
 
 
@@ -227,6 +239,18 @@ public class Schedule implements Initializable {
 
             return dayOfWeek;
         }}
+
+
+        private String getTime(Calendar date){
+
+            String time = "";
+
+            Date date1 = date.getTime();
+
+            SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+            time = format.format(date1);
+            return time;
+        }
 
     //TODO how should we format this data for the thingy
     public  ObservableList<Appointment> getAppointmentsByMonth() throws Exception {
