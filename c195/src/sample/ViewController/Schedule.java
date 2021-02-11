@@ -202,6 +202,7 @@ public class Schedule implements Initializable {
     }
     private int getMondayForThisWeek(int timeInMilliseconds){
 
+
         int currentDayOfWeek = 0; //from time in milliseconds.
         int monday = timeInMilliseconds - (dayInMilliseconds * currentDayOfWeek);
         return 0;

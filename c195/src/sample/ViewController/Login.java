@@ -1,5 +1,7 @@
 package sample.ViewController;
 
+
+
 import javafx.beans.Observable;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -19,7 +21,8 @@ import sample.Main;
 import javafx.scene.control.TextField;
 import sample.Model.User;
 
-
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -36,6 +39,14 @@ public class Login implements Initializable{
 
     @FXML
     private Button loginButton;
+
+    String fileName = "/sample/util/log.txt";
+
+    private String path;
+    private boolean shouldAppendToFile = false;
+
+
+
 
 
     private  ObservableList<User> users;
@@ -62,14 +73,19 @@ public class Login implements Initializable{
 
     private void validateUserLogin() throws Exception {
         isLoginValid = false;
+
         User user = UserDAOImpl.getUser(usernameInput.getText());
         String password = passwordInput.getText();
         System.out.println(user.getPassword());
 
         try {
+
             if(user != null && user.getPassword().equals(password)){
                 System.out.println("sarah ");
                 isLoginValid = true;
+
+                ReadFile file =new ReadFile(fileName);
+
             }
         }catch(Exception e){
             e.getMessage();
