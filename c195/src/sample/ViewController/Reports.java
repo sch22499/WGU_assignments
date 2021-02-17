@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.shape.Path;
 import sample.DAO.AppointmentDAOImpl;
 import sample.DAO.CustomerDAOImpl;
 import sample.DAO.UserDAOImpl;
@@ -13,7 +14,10 @@ import sample.Model.User;
 import sample.Model.Customer;
 import sample.util.TimeFiles;
 
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
@@ -130,10 +134,22 @@ public class Reports implements Initializable{
         textArea.setText(AppointmentDAOImpl.parseAppointmentTypes());
     }
 
+    public static String readFileAsString(String fileName){
+        String text = "";
+        try{
+            text = new String (Files.readAllBytes((Paths.get(fileName))));
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return text;
+    }
+
     @FXML
     private void onSelectLoginRecordOption(){
         textArea.clear();
-        textArea.setText("login");
+
+
+        textArea.setText(readFileAsString("fileName.txt"));
 
     }
 

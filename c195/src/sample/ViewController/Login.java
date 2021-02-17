@@ -21,10 +21,14 @@ import sample.Main;
 import javafx.scene.control.TextField;
 import sample.Model.User;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -54,7 +58,8 @@ public class Login implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        // TODO
+//        // TODO add language thinging
+
 //        ResourceBundle userLanguage;
 //        Locale current = getLocale();
 //        userLanguage = ResourceBundle.getBundle("ryanhildebrantsoftware2/Nat", current);
@@ -71,6 +76,23 @@ public class Login implements Initializable{
         //default constructor
     }
 
+    private void  writeLoginRecord(User user){
+
+        SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyy HH:mm:ss z");
+        Date date = new Date(System.currentTimeMillis());
+
+        String dateString = date.toString();
+        String userName = user.getUserName();
+
+        try{
+            FileWriter writer = new FileWriter("fileName.txt", true);
+            writer.write(userName + dateString);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void validateUserLogin() throws Exception {
         isLoginValid = false;
 
@@ -83,8 +105,7 @@ public class Login implements Initializable{
             if(user != null && user.getPassword().equals(password)){
                 System.out.println("sarah ");
                 isLoginValid = true;
-
-                ReadFile file =new ReadFile(fileName);
+                writeLoginRecord(user);
 
             }
         }catch(Exception e){
