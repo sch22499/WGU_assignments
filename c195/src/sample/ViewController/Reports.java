@@ -19,6 +19,8 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -104,23 +106,37 @@ public class Reports implements Initializable{
 
 
     private String generateScheduleReport() throws Exception {
-
+        //TODO add per user
 
         String text = "";
 
         for(User user : users) {
             String appointmentText = "";
-
+            List userIds = new ArrayList();
             for (Appointment appointment:
                  appointments) {
-                for (Customer customer:
-                     customers) {
-                    if (appointment.getCustomerID() == customer.getCustomerId()){
-                        String customerName = customer.getCustomerName();
-                        appointmentText += "\t" + appointment.getType()  + " From: " + TimeFiles.calendarToString(appointment.getStartTime()) + " To: " + TimeFiles.calendarToString(appointment.getEndTime()) + " With: " + customerName + "\n";
-                    }
+                if (appointment.getUserID() == user.getUserid()) {
+                        int customerId = appointment.getCustomerID();
+                    String customerName = CustomerDAOImpl.getCustomer(customerId).getCustomerName(); //BY ID
+                    appointmentText += "\t" + appointment.getType() + " From: " +
+                                    TimeFiles.calendarToString(appointment.getStartTime()) + " To: " +
+                                    TimeFiles.calendarToString(appointment.getEndTime()) + " With: " + customerName + "\n";
+                    userIds.add(user.getUserid());
+//                    for (Customer customer :
+//                            customers) {
+//                        if (appointment.getCustomerID() == customer.getCustomerId()) {
+//                            String customerName = customer.getCustomerName();
+//                            appointmentText += "\t" + appointment.getType() + " From: " +
+//                                    TimeFiles.calendarToString(appointment.getStartTime()) + " To: " +
+//                                    TimeFiles.calendarToString(appointment.getEndTime()) + " With: " + customerName + "\n";
+//                        }
+//                    }
+
                 }
 
+            }
+            if(!userIds.contains(user.getUserid())){
+                appointmentText = "\t No Appointments to Show \n";
             }
 
             text += user.getUserName() +": \n" + appointmentText;
@@ -128,7 +144,7 @@ public class Reports implements Initializable{
             return text;
     }
 
-    @FXML
+    @FXML //TODO add month
     private void onSelectAppointmentTypeOption() throws SQLException {
         textArea.clear();
         textArea.setText(AppointmentDAOImpl.parseAppointmentTypes());

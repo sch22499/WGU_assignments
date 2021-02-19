@@ -44,13 +44,12 @@ public class CustomerDAOImpl {
 
 
 
-    public static Customer getCustomer(String customerName) throws SQLException, Exception{
-        String sqlStatement="select * FROM customer WHERE customerName  = '" + customerName+ "'";
+    public static Customer getCustomer(int customerId) throws SQLException, Exception{
+        String sqlStatement="select * FROM customer WHERE customerId  = '" + customerId + "'";
         Query.makeQuery(sqlStatement);
         Customer customerResult;
         ResultSet result=Query.getResult();
         while(result.next()){
-            int customerId =result.getInt("customerId");
             String customerNameG=result.getString("customerName");
             int addressId = result.getInt("addressId");
             int active = result.getInt("active");
@@ -58,7 +57,7 @@ public class CustomerDAOImpl {
 
 
             String createDate=result.getString("createDate");
-            String createdBy=result.getString("createBy");
+            String createdBy=result.getString("createdBy");
             String lastUpdate=result.getString("lastUpdate");
             String lastUpdateBy=result.getString("lastUpdateBy");
             Calendar createDateCalendar=stringToCalendar(createDate);

@@ -99,6 +99,11 @@ public class AppointmentDAOImpl {
         return allAppointments;
     }
 
+    public static String getApointmentTypesByMonth() throws SQLException{
+
+
+    }
+
     public static String parseAppointmentTypes() throws SQLException {
         String sqlStatement = "select type, count(*) FROM appointment group by appointment.type";
 
